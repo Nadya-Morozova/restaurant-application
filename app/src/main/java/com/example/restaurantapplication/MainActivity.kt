@@ -7,7 +7,7 @@ import android.view.WindowManager
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_product)
+        setContentView(R.layout.activity_login_form)
 
         window.setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
