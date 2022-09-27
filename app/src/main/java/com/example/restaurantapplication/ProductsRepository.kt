@@ -571,7 +571,7 @@ class ProductsRepository {
                 "250 ccal"
             ),
             Product(
-                id = 44,
+                id = 45,
                 "Coca-Cola",
                 1.00,
                 "drink",
@@ -583,7 +583,7 @@ class ProductsRepository {
                 "250 ccal"
             ),
             Product(
-                id = 44,
+                id = 46,
                 "Fanta",
                 1.00,
                 "drink",
@@ -595,7 +595,7 @@ class ProductsRepository {
                 "250 ccal"
             ),
             Product(
-                id = 44,
+                id = 47,
                 "Sprite",
                 1.00,
                 "drink",
