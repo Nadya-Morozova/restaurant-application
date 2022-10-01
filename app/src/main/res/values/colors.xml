@@ -8,4 +8,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="text_color">#FF000000</color>
+
+    <color name="color_text_app_main">#B00F46</color>
+    <color name="sub_color_text">#AC3B61</color>
+    <color name="text_color_blue">#123C69</color>
+
+    <color name="back">#EDC7B7</color>
 </resources>

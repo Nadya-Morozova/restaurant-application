@@ -1,8 +1,13 @@
-package com.example.restaurantapplication
+package com.example.restaurantapplication.repositories
 
+import androidx.room.Insert
+import com.example.restaurantapplication.R
 import com.example.restaurantapplication.data.Product
+import dagger.hilt.android.scopes.ViewModelScoped
+import javax.inject.Inject
 
-class ProductsRepository {
+@ViewModelScoped
+class ProductsRepository @Inject constructor() {
 
     fun fillList(): List<Product> {
         return listOf(
@@ -107,7 +112,7 @@ class ProductsRepository {
                 "Chicken burger",
                 7.49,
                 "burgers",
-                    "Wheat bun, chicken cutlet, tomatoes, funchoza fries, iceberg lettuce, cucumber, cheese Dor Blue, burger sauce",
+                "Wheat bun, chicken cutlet, tomatoes, funchoza fries, iceberg lettuce, cucumber, cheese Dor Blue, burger sauce",
                 R.drawable.food_burger_1,
                 "Freshly baked homemade bun, tender chicken cutlet and fresh vegetables. The unique taste of the burger is given by the filling of dor-blue cheese and mayonnaise, combined with deep-fried funchose",
                 "8 min",
