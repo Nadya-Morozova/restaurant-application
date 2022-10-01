@@ -2,18 +2,19 @@ package com.example.restaurantapplication.db.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.restaurantapplication.db.data.Food
 
 @Dao
 interface FoodDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertFoodToDatabase(food: Food)
 
     @Query("SELECT * FROM food WHERE rate=5")
     suspend fun getListOfPopular(): List<Food>
 
-    @Query("SELECT * FROM food WHERE calories=:category")
+    @Query("SELECT * FROM food WHERE category=:category")
     suspend fun getListOfChosenCategory(category: String): List<Food>
 }

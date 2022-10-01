@@ -13,4 +13,9 @@ class ProductDbRepository @Inject constructor(var foodDao: FoodDao) {
     }
 
     suspend fun insertItemsOfFood(food: Food) = foodDao.insertFoodToDatabase(food)
+
+    suspend fun getListOfPopular(): List<Food> = foodDao.getListOfPopular()
+
+    suspend fun getListOfChosenCategory(category: String): List<Food> =
+        foodDao.getListOfChosenCategory(category)
 }

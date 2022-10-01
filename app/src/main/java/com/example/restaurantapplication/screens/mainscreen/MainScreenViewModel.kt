@@ -1,5 +1,6 @@
 package com.example.restaurantapplication.screens.mainscreen
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.restaurantapplication.R
@@ -26,8 +27,18 @@ class MainScreenViewModel @Inject constructor(
         Product(category = "dessert", image = R.drawable.category_icon_dessert),
         Product(category = "drink", image = R.drawable.category_icon_drink),
     )
+    val listOfPopularFood = MutableLiveData<List<Food>>()
 
-    fun addProductsToDb() {
+    fun getListOfPopular() {
+        addProductsToDb()
+        viewModelScope.launch {
+            val list = productDbRepository.getListOfPopular()
+            listOfPopularFood.value = list.slice(0..1)
+        }
+    }
+
+
+    private fun addProductsToDb() {
         viewModelScope.launch {
             productsRepository.fillList().forEach {
                 productDbRepository.insertItemsOfFood(

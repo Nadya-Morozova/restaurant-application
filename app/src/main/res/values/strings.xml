@@ -18,4 +18,5 @@
     <string name="quantity">Quantity</string>
     <string name="add_to_cart">Add to cart</string>
     <string name="view_all"><u>View all</u></string>
+    <string name="deliver_to"><u>Deliver to</u></string>
 </resources>
