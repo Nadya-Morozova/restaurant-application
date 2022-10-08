@@ -14,6 +14,7 @@ import com.example.restaurantapplication.ActionHandler
 import com.example.restaurantapplication.databinding.FragmentMainScreenBinding
 import com.example.restaurantapplication.views.adapters.CategoryAdapter
 import com.example.restaurantapplication.views.adapters.PopularAdapter
+import com.google.android.gms.auth.api.signin.GoogleSignIn
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -34,6 +35,11 @@ class MainScreenFragment : Fragment() {
         viewModel.getListOfPopular()
         initViews()
         initObservers()
+
+        val account = GoogleSignIn.getLastSignedInAccount(requireContext())
+        if (account != null) {
+            binding.imageView.setImageURI(account.photoUrl)
+        }
 
         return binding.root
     }

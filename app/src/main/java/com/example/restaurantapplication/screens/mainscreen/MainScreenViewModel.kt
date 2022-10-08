@@ -1,5 +1,6 @@
 package com.example.restaurantapplication.screens.mainscreen
 
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,6 +9,8 @@ import com.example.restaurantapplication.data.Product
 import com.example.restaurantapplication.db.data.Food
 import com.example.restaurantapplication.db.repository.ProductDbRepository
 import com.example.restaurantapplication.repositories.ProductsRepository
+import com.example.restaurantapplication.screens.mainscreen.data.UserGoogle
+import com.google.android.gms.auth.api.signin.GoogleSignIn
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -30,33 +33,10 @@ class MainScreenViewModel @Inject constructor(
     val listOfPopularFood = MutableLiveData<List<Food>>()
 
     fun getListOfPopular() {
-        addProductsToDb()
         viewModelScope.launch {
             val list = productDbRepository.getListOfPopular()
             list.shuffled()
             listOfPopularFood.value = list.slice(0..1)
-        }
-    }
-
-
-    private fun addProductsToDb() {
-        viewModelScope.launch {
-            productsRepository.fillList().forEach {
-                productDbRepository.insertItemsOfFood(
-                    Food(
-                        it.id,
-                        it.name,
-                        it.price,
-                        it.category,
-                        it.ingredients,
-                        it.image,
-                        it.description,
-                        it.averageCookingTime,
-                        it.rate,
-                        it.calories,
-                    )
-                )
-            }
         }
     }
 

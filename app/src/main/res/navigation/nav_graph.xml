@@ -5,6 +5,24 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/mainScreenFragment">
 
+    <activity
+        android:id="@+id/welcomeScreenActivity"
+        android:name="com.example.restaurantapplication.screens.activities.welcome.WelcomeScreenActivity"
+        android:label="WelcomeScreenActivity"
+        tools:layout="@layout/activity_welcome_screen" />
+
+    <activity
+        android:id="@+id/loginActivity"
+        android:name="com.example.restaurantapplication.screens.activities.signin.LoginActivity"
+        android:label="LoginActivity"
+        tools:layout="@layout/activity_login_form" />
+
+    <activity
+        android:id="@+id/registrationActivity"
+        android:name="com.example.restaurantapplication.screens.activities.registration.RegistrationActivity"
+        android:label="RegistrationActivity"
+        tools:layout="@layout/activity_registration_form" />
+
     <fragment
         android:id="@+id/mainScreenFragment"
         android:name="com.example.restaurantapplication.screens.mainscreen.MainScreenFragment"
