@@ -22,7 +22,7 @@ class MainScreenFragment : Fragment() {
     private lateinit var binding: FragmentMainScreenBinding
     private val viewModel by viewModels<MainScreenViewModel>()
     private lateinit var categoryAdapter: CategoryAdapter
-    private val popularAdapter = PopularAdapter(listOf())
+    private val popularAdapter = PopularAdapter(listOf(), null)
 
     override fun onCreateView(
         inflater: LayoutInflater,

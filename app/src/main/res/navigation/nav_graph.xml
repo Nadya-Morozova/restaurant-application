@@ -11,9 +11,6 @@
         android:label="MainScreenFragment"
         tools:layout="@layout/fragment_main_screen">
         <action
-            android:id="@+id/action_mainScreenFragment_to_detailsFragment"
-            app:destination="@id/detailsFragment" />
-        <action
             android:id="@+id/action_mainScreenFragment_to_listFragment"
             app:destination="@id/listFragment" />
     </fragment>
@@ -36,6 +33,9 @@
         <argument
             android:name="type"
             app:argType="string" />
+        <action
+            android:id="@+id/action_listFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
     </fragment>
 
 </navigation>

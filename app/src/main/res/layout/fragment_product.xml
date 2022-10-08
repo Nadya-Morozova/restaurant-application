@@ -3,6 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.restaurantapplication.screens.details.DetailsViewModel" />
+    </data>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -14,10 +21,10 @@
 
             <ImageButton
                 android:id="@+id/ib_previous"
-                android:layout_width="50sp"
-                android:layout_height="50sp"
+                android:layout_width="40sp"
+                android:layout_height="40sp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/pointer_buttons"
                 android:src="@drawable/prev"
                 app:layout_constraintStart_toStartOf="parent"
@@ -25,14 +32,14 @@
 
             <ImageButton
                 android:id="@+id/ib_favorite"
-                android:layout_width="50sp"
-                android:layout_height="50sp"
-                android:layout_marginTop="24dp"
+                android:layout_width="40sp"
+                android:layout_height="40sp"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/pointer_buttons"
                 android:src="@drawable/fav"
+                app:layout_constraintBottom_toBottomOf="@+id/ib_previous"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="@+id/ib_previous" />
 
             <TextView
                 android:id="@+id/tv_prod_name"
@@ -42,39 +49,43 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:fontFamily="@font/dm_sans"
-                android:text="Product Name"
+                android:text="@{viewModel.foodItem.name}"
                 android:textColor="@color/sub_color_text"
                 android:textSize="34sp"
                 android:textStyle="bold"
+                android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ib_previous" />
+                app:layout_constraintTop_toBottomOf="@+id/ib_previous"
+                tools:text="Product name" />
 
             <TextView
                 android:id="@+id/tv_prod_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
                 android:fontFamily="@font/dm_sans"
-                android:text="$12.50"
                 android:textColor="@color/color_text_app_main"
-                android:textSize="32sp"
+                android:textSize="28sp"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/iv_product_img"
                 app:layout_constraintStart_toStartOf="@+id/tv_prod_name"
-                app:layout_constraintTop_toBottomOf="@+id/tv_prod_name" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_prod_name"
+                app:setDollars="@{viewModel.foodItem.price}"
+                tools:text="$12.50" />
 
             <TextView
                 android:id="@+id/tv_size"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:text="Size"
                 android:textAlignment="center"
                 android:textColor="#B00F46"
-                android:textSize="22sp"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="@+id/tv_prod_price"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tv_prod_price"
                 app:layout_constraintTop_toBottomOf="@+id/tv_prod_price" />
 
             <androidx.appcompat.widget.AppCompatButton
@@ -94,7 +105,7 @@
                 android:id="@+id/acb_size_m"
                 android:layout_width="40sp"
                 android:layout_height="40sp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/round_buttons"
                 android:text="M"
                 android:textColor="#ffffff"
@@ -107,7 +118,7 @@
                 android:id="@+id/acb_size_l"
                 android:layout_width="40sp"
                 android:layout_height="40sp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/round_buttons"
                 android:text="L"
                 android:textColor="#ffffff"
@@ -120,14 +131,13 @@
                 android:id="@+id/iv_product_img"
                 android:layout_width="250dp"
                 android:layout_height="250dp"
-                tools:srcCompat="@tools:sample/avatars"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="8dp"
-                android:src="@drawable/food_pizza_2"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tv_prod_price"
-                app:layout_constraintTop_toBottomOf="@+id/tv_prod_name" />
+                app:layout_constraintStart_toEndOf="@id/tv_prod_price"
+                app:layout_constraintTop_toBottomOf="@+id/tv_prod_name"
+                app:setImage="@{viewModel.foodItem.image}"
+                tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
                 android:id="@+id/tv_quantity"
@@ -145,13 +155,13 @@
                 android:id="@+id/acb_remove"
                 android:layout_width="40sp"
                 android:layout_height="40sp"
-                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/pointer_buttons"
                 android:text="—"
                 android:textColor="#123C69"
                 android:textSize="22sp"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tv_quantity_number"
+                app:layout_constraintStart_toStartOf="@+id/tv_quantity"
                 app:layout_constraintTop_toBottomOf="@+id/tv_quantity" />
 
             <TextView
@@ -159,11 +169,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 android:text="1"
                 android:textColor="#B00F46"
                 android:textSize="22sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/acb_remove"
+                app:layout_constraintEnd_toStartOf="@+id/acb_add"
                 app:layout_constraintStart_toEndOf="@+id/acb_remove"
                 app:layout_constraintTop_toTopOf="@+id/acb_remove" />
 
@@ -171,12 +183,12 @@
                 android:id="@+id/acb_add"
                 android:layout_width="40sp"
                 android:layout_height="40sp"
-                android:layout_marginStart="8dp"
                 android:background="@drawable/round_buttons"
                 android:text="+"
                 android:textColor="#F0EAE7"
                 android:textSize="22sp"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_quantity_number"
+                app:layout_constraintEnd_toEndOf="@+id/tv_quantity"
                 app:layout_constraintStart_toEndOf="@+id/tv_quantity_number"
                 app:layout_constraintTop_toTopOf="@+id/tv_quantity_number" />
 
@@ -184,8 +196,8 @@
                 android:id="@+id/iv_star"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
                 android:src="@drawable/star"
                 app:layout_constraintEnd_toStartOf="@+id/tv_rating"
                 app:layout_constraintStart_toStartOf="parent"
@@ -196,13 +208,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="4.9"
+                android:text="@{viewModel.foodItem.rate.toString()}"
                 android:textColor="@color/color_text_app_main"
-                android:textSize="22sp"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_star"
                 app:layout_constraintEnd_toStartOf="@+id/iv_fire"
                 app:layout_constraintStart_toEndOf="@+id/iv_star"
-                app:layout_constraintTop_toTopOf="@+id/iv_star" />
+                app:layout_constraintTop_toTopOf="@+id/iv_star"
+                tools:text="4.9" />
 
             <ImageView
                 android:id="@+id/iv_fire"
@@ -220,13 +233,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="145 cal"
+                android:text="@{viewModel.foodItem.calories}"
                 android:textColor="@color/color_text_app_main"
-                android:textSize="22sp"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_fire"
                 app:layout_constraintEnd_toStartOf="@+id/iv_timer"
                 app:layout_constraintStart_toEndOf="@+id/iv_fire"
-                app:layout_constraintTop_toTopOf="@+id/iv_fire" />
+                app:layout_constraintTop_toTopOf="@+id/iv_fire"
+                tools:text="145 cal" />
 
             <ImageView
                 android:id="@+id/iv_timer"
@@ -244,14 +258,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginEnd="32dp"
-                android:text="30 min"
+                android:layout_marginEnd="24dp"
+                android:text="@{viewModel.foodItem.averageCookingTime}"
                 android:textColor="@color/color_text_app_main"
-                android:textSize="22sp"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_timer"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/iv_timer"
-                app:layout_constraintTop_toTopOf="@+id/iv_timer" />
+                app:layout_constraintTop_toTopOf="@+id/iv_timer"
+                tools:text="30 min" />
 
             <TextView
                 android:id="@+id/tv_ingredients_title"
@@ -263,7 +278,8 @@
                 android:fontFamily="@font/dm_sans"
                 android:text="Ingredients"
                 android:textColor="@color/sub_color_text"
-                android:textSize="34sp"
+                android:textSize="30sp"
+                android:textAlignment="center"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -276,12 +292,14 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                android:text="Ingredients"
+                android:textAlignment="center"
+                android:text="@{viewModel.foodItem.ingredients}"
                 android:textColor="@color/color_text_app_main"
-                android:textSize="22sp"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_ingredients_title" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_ingredients_title"
+                tools:text="Ingredients" />
 
             <TextView
                 android:id="@+id/tv_details"
@@ -293,8 +311,9 @@
                 android:fontFamily="@font/dm_sans"
                 android:text="Description"
                 android:textColor="@color/sub_color_text"
-                android:textSize="34sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
+                android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_ingredients" />
@@ -306,12 +325,14 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                android:text="description description description description description description"
+                android:text="@{viewModel.foodItem.description}"
                 android:textColor="#B00F46"
-                android:textSize="22sp"
+                android:textSize="18sp"
+                android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_details" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_details"
+                tools:text="description description description description description description" />
 
             <Button
                 android:id="@+id/btn_create_account"

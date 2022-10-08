@@ -33,6 +33,7 @@ class MainScreenViewModel @Inject constructor(
         addProductsToDb()
         viewModelScope.launch {
             val list = productDbRepository.getListOfPopular()
+            list.shuffled()
             listOfPopularFood.value = list.slice(0..1)
         }
     }

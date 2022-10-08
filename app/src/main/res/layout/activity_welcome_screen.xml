@@ -19,6 +19,7 @@
             android:textColor="@color/text_color"
             android:textSize="26sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/img_welcome_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -31,6 +32,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:src="@drawable/welcome_img"
+            app:layout_constraintBottom_toTopOf="@+id/tv_info_message"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_welcome_message" />
@@ -46,6 +48,7 @@
             android:textColor="@color/text_color"
             android:textSize="26sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/btn_create_account"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/img_welcome_image" />
@@ -59,6 +62,7 @@
             android:layout_marginEnd="32dp"
             android:background="@drawable/round_buttons"
             android:text="@string/create_an_account"
+            app:layout_constraintBottom_toTopOf="@+id/tv_message"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_info_message" />
@@ -72,6 +76,7 @@
             android:layout_marginEnd="8dp"
             android:text="@string/already_have_an_account"
             android:textAlignment="center"
+            app:layout_constraintBottom_toTopOf="@+id/tv_login"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_create_account" />
@@ -83,11 +88,13 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginBottom="32dp"
             android:text="@string/login"
             android:textAlignment="center"
             android:textColor="#B00F46"
             android:textSize="22sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_message" />
