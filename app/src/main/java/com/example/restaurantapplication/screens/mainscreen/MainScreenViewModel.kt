@@ -17,7 +17,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainScreenViewModel @Inject constructor(
-    private val productsRepository: ProductsRepository,
     private val productDbRepository: ProductDbRepository
 ) : ViewModel() {
 

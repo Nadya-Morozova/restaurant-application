@@ -66,6 +66,9 @@ dependencies {
     // Google
     implementation 'com.google.android.gms:play-services-auth:20.3.0'
 
+    //Like Button
+    implementation "com.github.jd-alexander:LikeButton:0.2.3"
+
     // Testing
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

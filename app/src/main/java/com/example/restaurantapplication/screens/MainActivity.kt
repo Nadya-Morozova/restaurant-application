@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.example.restaurantapplication.R
@@ -29,6 +30,20 @@ class MainActivity : AppCompatActivity() {
                 supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment?
             navController = navHostFragment?.navController ?: throw NullPointerException()
             NavigationUI.setupWithNavController(bottomNavView, navController)
+
+            bottomNavView.setOnItemSelectedListener {
+                when (it.itemId) {
+                    R.id.home -> {
+                        navController.navigate(R.id.mainScreenFragment)
+                        true
+                    }
+                    R.id.likes -> {
+                        navController.navigate(R.id.likesFragment)
+                        true
+                    }
+                    else -> false
+                }
+            }
         }
     }
 }
