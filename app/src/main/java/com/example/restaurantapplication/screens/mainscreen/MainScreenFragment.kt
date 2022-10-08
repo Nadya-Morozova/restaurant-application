@@ -65,6 +65,12 @@ class MainScreenFragment : Fragment() {
                 )
             }
         }
+
+        binding.btnSearch.setOnClickListener {
+            findNavController().navigate(
+                MainScreenFragmentDirections.actionMainScreenFragmentToSearchFragment()
+            )
+        }
     }
 
     private fun initObservers() {

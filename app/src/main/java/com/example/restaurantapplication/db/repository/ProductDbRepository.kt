@@ -20,4 +20,6 @@ class ProductDbRepository @Inject constructor(var foodDao: FoodDao) {
         foodDao.getListOfChosenCategory(category)
 
     suspend fun getFoodById(id: String): Food = foodDao.getFoodById(id)
+
+    suspend fun getFoodByQuery(query: String): List<Food> = foodDao.getFoodByQuery(query)
 }

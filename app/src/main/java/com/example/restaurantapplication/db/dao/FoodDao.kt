@@ -20,4 +20,7 @@ interface FoodDao {
 
     @Query("SELECT * FROM food WHERE id=:id")
     suspend fun getFoodById(id: String): Food
+
+    @Query("SELECT * FROM food WHERE name LIKE '%' || :query || '%'")
+    suspend fun getFoodByQuery(query: String): List<Food>
 }
