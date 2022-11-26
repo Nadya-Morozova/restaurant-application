@@ -1,27 +1,42 @@
 package com.example.restaurantapplication.screens.details
 
+import android.content.Context
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.restaurantapplication.db.data.Cart
 import com.example.restaurantapplication.db.data.Food
 import com.example.restaurantapplication.db.data.Like
 import com.example.restaurantapplication.db.repository.ProductDbRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.launch
+import java.text.DecimalFormat
 import javax.inject.Inject
 
 @HiltViewModel
 class DetailsViewModel @Inject constructor(
-    private val productDbRepository: ProductDbRepository
+    private val productDbRepository: ProductDbRepository,
+    @ApplicationContext private val context: Context
 ) : ViewModel() {
 
     val foodItem = MutableLiveData<Food>()
     val isLikedItem = MutableLiveData<Boolean>()
 
+    var counterOfProduct = 1
+    var count = MutableLiveData(1)
+
+    var price = 0.0
+    var newPrice = MutableLiveData<Double>()
+
+    private val size = MutableLiveData<String>()
+
     fun getFoodById(id: String) {
         viewModelScope.launch {
             foodItem.value = productDbRepository.getFoodById(id)
+            price = foodItem.value?.price ?: 0.0
         }
     }
 
@@ -43,4 +58,55 @@ class DetailsViewModel @Inject constructor(
         }
     }
 
+    fun setSizeOfProduct(size: String) {
+        this.size.value = size
+    }
+
+    fun onClickButtonRemoveOneCount() {
+        if (counterOfProduct >= 1) {
+            counterOfProduct -= 1
+            price -= foodItem.value?.price ?: 0.0
+        }
+        if (counterOfProduct == 0) {
+            price = 0.0
+            counterOfProduct = 0
+        }
+        newPrice.value = DecimalFormat("##.#").format(price).toDouble()
+        count.value = counterOfProduct
+    }
+
+    fun onClickButtonAddOneCount() {
+        counterOfProduct += 1
+        price += foodItem.value?.price ?: 0.0
+        newPrice.value = DecimalFormat("##.#").format(price).toDouble()
+        count.value = counterOfProduct
+    }
+
+    fun addOrderToCart() {
+        val cart: Cart
+        var percent = 0
+        when (size.value) {
+            "S" -> percent = 5
+            "M" -> percent = 10
+            "L" -> percent = 20
+        }
+        cart = if (newPrice.value != null) {
+            Cart(foodItem.value?.id, size.value, count.value, newPrice.value?.plus(percent))
+        } else {
+            Cart(
+                foodItem.value?.id,
+                size.value,
+                count.value,
+                foodItem.value?.price?.plus(percent)
+            )
+        }
+        viewModelScope.launch {
+            if (size.value != null) {
+                Log.d("CART", cart.toString())
+                productDbRepository.addOrderToCart(cart)
+            } else {
+                Toast.makeText(context, "Choose size!", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
 }

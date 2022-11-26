@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.example.restaurantapplication.db.data.Cart
 import com.example.restaurantapplication.db.data.Food
 import com.example.restaurantapplication.db.data.Like
 
@@ -38,4 +39,8 @@ interface FoodDao {
 
     @Query("DELETE FROM likes WHERE id=(:id)")
     suspend fun deleteFood(id: String)
+
+    //Cart
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun addOrderToCart(cart: Cart)
 }

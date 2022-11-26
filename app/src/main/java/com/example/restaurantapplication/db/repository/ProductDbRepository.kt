@@ -1,6 +1,7 @@
 package com.example.restaurantapplication.db.repository
 
 import com.example.restaurantapplication.db.dao.FoodDao
+import com.example.restaurantapplication.db.data.Cart
 import com.example.restaurantapplication.db.data.Food
 import com.example.restaurantapplication.db.data.Like
 import dagger.hilt.android.scopes.ViewModelScoped
@@ -35,4 +36,7 @@ class ProductDbRepository @Inject constructor(var foodDao: FoodDao) {
     suspend fun insertFood(like: Like) = foodDao.insertFood(like)
 
     suspend fun deleteFood(id: String) = foodDao.deleteFood(id)
+
+    // Cart
+    suspend fun addOrderToCart(cart: Cart) = foodDao.addOrderToCart(cart)
 }
