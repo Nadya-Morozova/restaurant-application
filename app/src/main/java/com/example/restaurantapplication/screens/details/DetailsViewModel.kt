@@ -1,7 +1,6 @@
 package com.example.restaurantapplication.screens.details
 
 import android.content.Context
-import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -71,14 +70,16 @@ class DetailsViewModel @Inject constructor(
             price = 0.0
             counterOfProduct = 0
         }
-        newPrice.value = DecimalFormat("##.#").format(price).toDouble()
+//        newPrice.value = "$.2f".format(price).toDouble()
+        newPrice.value = price
         count.value = counterOfProduct
     }
 
     fun onClickButtonAddOneCount() {
         counterOfProduct += 1
         price += foodItem.value?.price ?: 0.0
-        newPrice.value = DecimalFormat("##.#").format(price).toDouble()
+//        newPrice.value = "$.2f".format(price).toDouble()
+        newPrice.value = price
         count.value = counterOfProduct
     }
 
@@ -86,23 +87,31 @@ class DetailsViewModel @Inject constructor(
         val cart: Cart
         var percent = 0
         when (size.value) {
-            "S" -> percent = 5
-            "M" -> percent = 10
-            "L" -> percent = 20
+            "S" -> percent = 2
+            "M" -> percent = 5
+            "L" -> percent = 10
         }
         cart = if (newPrice.value != null) {
-            Cart(foodItem.value?.id, size.value, count.value, newPrice.value?.plus(percent))
+            Cart(
+                idOfProduct = foodItem.value?.id,
+                image = foodItem.value?.image,
+                name = foodItem.value?.name,
+                size = size.value,
+                quantity = count.value,
+                price = newPrice.value?.plus(percent)
+            )
         } else {
             Cart(
-                foodItem.value?.id,
-                size.value,
-                count.value,
-                foodItem.value?.price?.plus(percent)
+                idOfProduct = foodItem.value?.id,
+                image = foodItem.value?.image,
+                name = foodItem.value?.name,
+                size = size.value,
+                quantity = count.value,
+                price = foodItem.value?.price?.plus(percent)
             )
         }
         viewModelScope.launch {
             if (size.value != null) {
-                Log.d("CART", cart.toString())
                 productDbRepository.addOrderToCart(cart)
             } else {
                 Toast.makeText(context, "Choose size!", Toast.LENGTH_SHORT).show()

@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
-import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.example.restaurantapplication.R
@@ -39,6 +38,10 @@ class MainActivity : AppCompatActivity() {
                     }
                     R.id.likes -> {
                         navController.navigate(R.id.likesFragment)
+                        true
+                    }
+                    R.id.cart -> {
+                        navController.navigate(R.id.cartFragment)
                         true
                     }
                     else -> false

@@ -39,4 +39,6 @@ class ProductDbRepository @Inject constructor(var foodDao: FoodDao) {
 
     // Cart
     suspend fun addOrderToCart(cart: Cart) = foodDao.addOrderToCart(cart)
+
+    suspend fun getAllFromCart() = foodDao.getAllFromCart()
 }

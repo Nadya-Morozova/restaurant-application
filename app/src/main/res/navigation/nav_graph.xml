@@ -82,4 +82,10 @@
             app:destination="@id/detailsFragment" />
     </fragment>
 
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.example.restaurantapplication.screens.cart.CartFragment"
+        android:label="Cart"
+        tools:layout="@layout/fragment_cart"/>
+
 </navigation>

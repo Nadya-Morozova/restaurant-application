@@ -43,4 +43,7 @@ interface FoodDao {
     //Cart
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addOrderToCart(cart: Cart)
+
+    @Query("SELECT * FROM cart")
+    suspend fun getAllFromCart(): List<Cart>
 }
