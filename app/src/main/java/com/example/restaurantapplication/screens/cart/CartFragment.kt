@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.restaurantapplication.databinding.FragmentCartBinding
@@ -51,6 +52,11 @@ class CartFragment : Fragment() {
                     tvTotal.visibility = View.VISIBLE
                     tvTitleTotal.visibility = View.VISIBLE
                     btnProcessToPayment.visibility = View.VISIBLE
+                    binding.btnProcessToPayment.setOnClickListener {
+                        findNavController().navigate(
+                            CartFragmentDirections.actionCartFragmentToPersonalDataFragment()
+                        )
+                    }
 
                     cartAdapter.updateList(it)
                     rvCartProduct.adapter = cartAdapter

@@ -86,6 +86,28 @@
         android:id="@+id/cartFragment"
         android:name="com.example.restaurantapplication.screens.cart.CartFragment"
         android:label="Cart"
-        tools:layout="@layout/fragment_cart"/>
+        tools:layout="@layout/fragment_cart">
+        <action
+            android:id="@+id/action_cartFragment_to_personalDataFragment"
+            app:destination="@id/personalDataFragment" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment_personal_data"
+        android:id="@+id/personalDataFragment"
+        android:name="com.example.restaurantapplication.screens.personal.PersonalDataFragment"
+        android:label="Personal Data" >
+        <action
+            android:id="@+id/action_personalDataFragment_to_waitCallFragment"
+            app:destination="@id/waitCallFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/waitCallFragment"
+        tools:layout="@layout/fragment_wait_call"
+        android:name="com.example.restaurantapplication.screens.WaitCallFragment"
+        android:label="Wait" >
+        <action
+            android:id="@+id/action_waitCallFragment_to_mainScreenFragment"
+            app:destination="@id/mainScreenFragment" />
+    </fragment>
 
 </navigation>

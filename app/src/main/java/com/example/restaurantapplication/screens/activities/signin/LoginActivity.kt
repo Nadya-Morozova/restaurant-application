@@ -17,6 +17,10 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
 
+    companion object {
+        const val EMAIL = "EMAIL"
+    }
+
     private lateinit var binding: ActivityLoginFormBinding
     private val viewModel by viewModels<LoginViewModel>()
 
@@ -35,6 +39,7 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "Let's go", Toast.LENGTH_SHORT).show()
                 sharedPreferences.edit()
                     .putBoolean(SplashScreenActivity.CHANGED_ACTIVITY, true)
+                    .putString(EMAIL, binding.etEmail.text.toString())
                     .commit()
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()

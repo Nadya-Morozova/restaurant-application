@@ -116,7 +116,7 @@
                 android:layout_marginEnd="32dp"
                 android:layout_marginBottom="32dp"
                 android:background="@drawable/round_buttons"
-                android:text="Process to payment"
+                android:text="Next"
                 android:textStyle="bold"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"

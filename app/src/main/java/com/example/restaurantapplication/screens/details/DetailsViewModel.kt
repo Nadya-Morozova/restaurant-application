@@ -90,6 +90,7 @@ class DetailsViewModel @Inject constructor(
             "L" -> percent = 10
         }
         cart = if (newPrice.value != null) {
+            Toast.makeText(context, "Item added to cart!", Toast.LENGTH_SHORT).show()
             Cart(
                 idOfProduct = foodItem.value?.id,
                 image = foodItem.value?.image,
@@ -99,6 +100,7 @@ class DetailsViewModel @Inject constructor(
                 price = newPrice.value?.plus(percent)
             )
         } else {
+            Toast.makeText(context, "Item added to cart!", Toast.LENGTH_SHORT).show()
             Cart(
                 idOfProduct = foodItem.value?.id,
                 image = foodItem.value?.image,

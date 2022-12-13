@@ -1,5 +1,7 @@
 package com.example.restaurantapplication.screens.mainscreen
 
+import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,13 +14,19 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.restaurantapplication.ActionHandler
 import com.example.restaurantapplication.databinding.FragmentMainScreenBinding
+import com.example.restaurantapplication.screens.activities.SplashScreenActivity
+import com.example.restaurantapplication.screens.activities.signin.LoginActivity
+import com.example.restaurantapplication.screens.activities.welcome.WelcomeScreenActivity
 import com.example.restaurantapplication.views.adapters.CategoryAdapter
 import com.example.restaurantapplication.views.adapters.PopularAdapter
-import com.google.android.gms.auth.api.signin.GoogleSignIn
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainScreenFragment : Fragment() {
+
+    @Inject
+    lateinit var sharedPreferences: SharedPreferences
 
     private lateinit var binding: FragmentMainScreenBinding
     private val viewModel by viewModels<MainScreenViewModel>()
@@ -36,10 +44,15 @@ class MainScreenFragment : Fragment() {
         initViews()
         initObservers()
 
-        val account = GoogleSignIn.getLastSignedInAccount(requireContext())
-        if (account != null) {
-            binding.imageView.setImageURI(account.photoUrl)
+        binding.tvDeliverTo.setOnClickListener {
+            sharedPreferences
+                .edit()
+                .putBoolean(SplashScreenActivity.CHANGED_ACTIVITY, false)
+                .commit()
+            startActivity(Intent(requireContext(), WelcomeScreenActivity::class.java))
         }
+
+        binding.tvDeliverTo.text = sharedPreferences.getString(LoginActivity.EMAIL, "")
 
         return binding.root
     }

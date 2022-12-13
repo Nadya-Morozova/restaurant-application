@@ -20,51 +20,41 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="16dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/img_location"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:src="@drawable/location_icon"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView"
-                app:layout_constraintEnd_toStartOf="@+id/tv_deliver_to"
-                app:layout_constraintStart_toEndOf="@+id/imageView"
-                app:layout_constraintTop_toTopOf="@+id/imageView" />
-
             <TextView
                 android:id="@+id/tv_deliver_to"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="32dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
                 android:fontFamily="@font/dm_sans"
-                android:text="@string/deliver_to"
+                android:text="test@mail.com"
                 android:textColor="@color/sub_color_text"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/img_location"
-                app:layout_constraintEnd_toStartOf="@+id/btn_search"
-                app:layout_constraintStart_toEndOf="@+id/img_location"
-                app:layout_constraintTop_toTopOf="@+id/img_location" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/dm_sans"
+                android:text="(Tap to email for login)"
+                android:textColor="@color/sub_color_text"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/tv_deliver_to"
+                app:layout_constraintStart_toStartOf="@+id/tv_deliver_to"
+                app:layout_constraintTop_toBottomOf="@+id/tv_deliver_to" />
 
             <Button
                 android:id="@+id/btn_search"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:layout_marginStart="32dp"
+                android:layout_marginEnd="24dp"
                 android:background="@drawable/search_icon"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_deliver_to"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tv_deliver_to"
                 app:layout_constraintTop_toTopOf="@+id/tv_deliver_to" />
 
             <TextView
@@ -72,14 +62,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="24dp"
                 android:fontFamily="@font/dm_sans"
                 android:text="Get you food"
                 android:textColor="@color/sub_color_text"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_hint" />
 
             <TextView
                 android:id="@+id/tv_delivered"
