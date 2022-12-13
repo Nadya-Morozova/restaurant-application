@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.restaurantapplication.R
 import com.example.restaurantapplication.databinding.ActivityWelcomeScreenBinding
-import com.example.restaurantapplication.screens.MainActivity
+import com.example.restaurantapplication.screens.activities.registration.RegistrationActivity
 import com.example.restaurantapplication.screens.activities.signin.LoginActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -23,7 +23,7 @@ class WelcomeScreenActivity : AppCompatActivity() {
         viewModel.addProductsToDb()
 
         binding.btnCreateAccount.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, RegistrationActivity::class.java))
             finish()
         }
 

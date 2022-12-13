@@ -50,6 +50,9 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1"
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
 
+    //Shared Preferences
+    implementation 'androidx.preference:preference-ktx:1.2.0'
+
     // Dependency Injection
     implementation "com.google.dagger:hilt-android:2.38.1"
     kapt "com.google.dagger:hilt-compiler:2.38.1"
@@ -57,7 +60,6 @@ dependencies {
     // Database
     implementation "androidx.room:room-ktx:2.4.2"
     kapt "androidx.room:room-compiler:2.4.2"
-//    implementation "com.github.jd-alexander:LikeButton:0.2.3"
 
     // Navigation Component
     implementation "androidx.navigation:navigation-fragment-ktx:2.5.2"

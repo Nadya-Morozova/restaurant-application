@@ -6,8 +6,9 @@ import com.example.restaurantapplication.db.dao.FoodDao
 import com.example.restaurantapplication.db.data.Cart
 import com.example.restaurantapplication.db.data.Food
 import com.example.restaurantapplication.db.data.Like
+import com.example.restaurantapplication.db.data.User
 
-@Database(entities = [Food::class, Like::class, Cart::class], version = 1)
+@Database(entities = [Food::class, Like::class, Cart::class, User::class], version = 1)
 abstract class FoodDatabase: RoomDatabase() {
     abstract fun foodDao(): FoodDao
 }

@@ -1,55 +1,47 @@
 package com.example.restaurantapplication.screens.activities.signin
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.restaurantapplication.R
 import com.example.restaurantapplication.databinding.ActivityLoginFormBinding
 import com.example.restaurantapplication.screens.MainActivity
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.example.restaurantapplication.screens.activities.SplashScreenActivity
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-
+@AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
 
-    companion object {
-        const val REQUEST_CODE = 1
-    }
-
     private lateinit var binding: ActivityLoginFormBinding
-    private lateinit var googleSignInClient: GoogleSignInClient
+    private val viewModel by viewModels<LoginViewModel>()
+
+    @Inject
+    lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login_form)
 
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestEmail()
-            .requestProfile()
-            .build()
-        googleSignInClient = GoogleSignIn.getClient(this, gso)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
 
-        initViews()
-    }
-
-    private fun initViews() {
-        binding.apply {
-            mcvGoogle.setOnClickListener {
-                val signInIntent = googleSignInClient.signInIntent
-                startActivityForResult(signInIntent, REQUEST_CODE)
+        viewModel.isUserLogIn.observe(this) {
+            if (it == true) {
+                Toast.makeText(this, "Let's go", Toast.LENGTH_SHORT).show()
+                sharedPreferences.edit()
+                    .putBoolean(SplashScreenActivity.CHANGED_ACTIVITY, true)
+                    .commit()
+                startActivity(Intent(this, MainActivity::class.java))
+                finish()
+            } else {
+                Toast.makeText(this, "Something wrong", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
-//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        super.onActivityResult(requestCode, resultCode, data)
-//
-//        if (requestCode == REQUEST_CODE) {
-//            val intent = Intent(this, MainActivity::class.java)
-//            startActivity(intent)
-//            finish()
-//        }
-//    }
 }

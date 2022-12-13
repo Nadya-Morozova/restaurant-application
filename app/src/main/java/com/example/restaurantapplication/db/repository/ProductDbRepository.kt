@@ -4,6 +4,7 @@ import com.example.restaurantapplication.db.dao.FoodDao
 import com.example.restaurantapplication.db.data.Cart
 import com.example.restaurantapplication.db.data.Food
 import com.example.restaurantapplication.db.data.Like
+import com.example.restaurantapplication.db.data.User
 import dagger.hilt.android.scopes.ViewModelScoped
 import javax.inject.Inject
 
@@ -41,4 +42,13 @@ class ProductDbRepository @Inject constructor(var foodDao: FoodDao) {
     suspend fun addOrderToCart(cart: Cart) = foodDao.addOrderToCart(cart)
 
     suspend fun getAllFromCart() = foodDao.getAllFromCart()
+
+    // User
+    suspend fun registerUser(user: User) = foodDao.registerUser(user)
+
+    suspend fun getAllUsers(): List<User> = foodDao.getAllUsers()
+
+    suspend fun getUsersEmail(): List<User> = foodDao.getUsersEmail()
+
+    suspend fun removeAccountByEmail(email: String) = foodDao.removeAccountByEmail(email)
 }

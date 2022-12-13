@@ -70,16 +70,14 @@ class DetailsViewModel @Inject constructor(
             price = 0.0
             counterOfProduct = 0
         }
-//        newPrice.value = "$.2f".format(price).toDouble()
-        newPrice.value = price
+        newPrice.value = DecimalFormat("##.#").format(price).replace(",", ".").toDouble()
         count.value = counterOfProduct
     }
 
     fun onClickButtonAddOneCount() {
         counterOfProduct += 1
         price += foodItem.value?.price ?: 0.0
-//        newPrice.value = "$.2f".format(price).toDouble()
-        newPrice.value = price
+        newPrice.value = DecimalFormat("##.#").format(price).replace(",", ".").toDouble()
         count.value = counterOfProduct
     }
 

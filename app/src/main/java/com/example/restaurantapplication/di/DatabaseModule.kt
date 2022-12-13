@@ -1,6 +1,8 @@
 package com.example.restaurantapplication.di
 
 import android.content.Context
+import android.content.SharedPreferences
+import androidx.preference.PreferenceManager
 import androidx.room.Room
 import com.example.restaurantapplication.db.FoodDatabase
 import com.example.restaurantapplication.db.dao.FoodDao
@@ -28,5 +30,11 @@ object DatabaseModule {
     fun provideFoodDao(foodDatabase: FoodDatabase): FoodDao {
         return foodDatabase.foodDao()
     }
+
+    @Provides
+    fun provideSharedPreferences(@ApplicationContext context: Context): SharedPreferences {
+        return PreferenceManager.getDefaultSharedPreferences(context)
+    }
+
 
 }

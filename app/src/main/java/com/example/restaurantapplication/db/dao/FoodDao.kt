@@ -7,6 +7,7 @@ import androidx.room.Query
 import com.example.restaurantapplication.db.data.Cart
 import com.example.restaurantapplication.db.data.Food
 import com.example.restaurantapplication.db.data.Like
+import com.example.restaurantapplication.db.data.User
 
 @Dao
 interface FoodDao {
@@ -46,4 +47,17 @@ interface FoodDao {
 
     @Query("SELECT * FROM cart")
     suspend fun getAllFromCart(): List<Cart>
+
+    //User
+    @Insert
+    suspend fun registerUser(user: User)
+
+    @Query("SELECT * FROM user")
+    suspend fun getAllUsers(): List<User>
+
+    @Query("SELECT id, email FROM user")
+    suspend fun getUsersEmail(): List<User>
+
+    @Query("DELETE FROM user where email=(:email)")
+    suspend fun removeAccountByEmail(email: String)
 }
