@@ -23,7 +23,7 @@ class RegistrationViewModel @Inject constructor(
 
     val isUserAdded = MutableLiveData<Boolean>()
 
-    private val userList = MutableLiveData<List<User>>()
+    val userList = MutableLiveData<List<User>>()
 
     fun getAllListOfUsers() {
         viewModelScope.launch {
