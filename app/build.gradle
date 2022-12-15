@@ -1,6 +1,10 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'androidx.navigation.safeargs.kotlin'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+    id 'org.jetbrains.dokka'
 }
 
 android {
@@ -37,11 +41,44 @@ android {
 
 dependencies {
 
+    // Base
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.5.0'
+    implementation 'androidx.fragment:fragment-ktx:1.5.0'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.1'
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1"
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+
+    //Shared Preferences
+    implementation 'androidx.preference:preference-ktx:1.2.0'
+
+    // Dependency Injection
+    implementation "com.google.dagger:hilt-android:2.38.1"
+    kapt "com.google.dagger:hilt-compiler:2.38.1"
+
+    // Database
+    implementation "androidx.room:room-ktx:2.4.2"
+    kapt "androidx.room:room-compiler:2.4.2"
+
+    // Navigation Component
+    implementation "androidx.navigation:navigation-fragment-ktx:2.5.2"
+    implementation "androidx.navigation:navigation-ui-ktx:2.5.2"
+
+    // Google
+    implementation 'com.google.android.gms:play-services-auth:20.3.0'
+
+    //Like Button
+    implementation "com.github.jd-alexander:LikeButton:0.2.3"
+
+    // Testing
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.2'
+    testImplementation 'org.mockito:mockito-core:4.0.0'
+    testImplementation 'org.mockito.kotlin:mockito-kotlin:4.0.0'
+    testImplementation 'org.mockito:mockito-inline:4.0.0'
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.3"
 }

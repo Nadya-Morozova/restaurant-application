@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainScreenFragment">
+
+    <activity
+        android:id="@+id/welcomeScreenActivity"
+        android:name="com.example.restaurantapplication.screens.activities.welcome.WelcomeScreenActivity"
+        android:label="WelcomeScreenActivity"
+        tools:layout="@layout/activity_welcome_screen" />
+
+    <activity
+        android:id="@+id/loginActivity"
+        android:name="com.example.restaurantapplication.screens.activities.signin.LoginActivity"
+        android:label="LoginActivity"
+        tools:layout="@layout/activity_login_form" />
+
+    <activity
+        android:id="@+id/registrationActivity"
+        android:name="com.example.restaurantapplication.screens.activities.registration.RegistrationActivity"
+        android:label="RegistrationActivity"
+        tools:layout="@layout/activity_registration_form" />
+
+    <fragment
+        android:id="@+id/mainScreenFragment"
+        android:name="com.example.restaurantapplication.screens.mainscreen.MainScreenFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_main_screen">
+        <action
+            android:id="@+id/action_mainScreenFragment_to_listFragment"
+            app:destination="@id/listFragment" />
+        <action
+            android:id="@+id/action_mainScreenFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.example.restaurantapplication.screens.details.DetailsFragment"
+        android:label="DetailsFragment"
+        tools:layout="@layout/fragment_product">
+        <argument
+            android:name="id"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_detailsFragment_to_mainScreenFragment"
+            app:destination="@id/mainScreenFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/listFragment"
+        android:name="com.example.restaurantapplication.screens.globallist.ListFragment"
+        android:label="ListFragment"
+        tools:layout="@layout/fragment_list">
+        <argument
+            android:name="type"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_listFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.restaurantapplication.screens.search.SearchFragment"
+        android:label="SearchFragment"
+        tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/action_searchFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/likesFragment"
+        android:name="com.example.restaurantapplication.screens.likes.LikesFragment"
+        android:label="Likes"
+        tools:layout="@layout/fragment_likes">
+        <action
+            android:id="@+id/action_likesFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.example.restaurantapplication.screens.cart.CartFragment"
+        android:label="Cart"
+        tools:layout="@layout/fragment_cart">
+        <action
+            android:id="@+id/action_cartFragment_to_personalDataFragment"
+            app:destination="@id/personalDataFragment" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment_personal_data"
+        android:id="@+id/personalDataFragment"
+        android:name="com.example.restaurantapplication.screens.personal.PersonalDataFragment"
+        android:label="Personal Data" >
+        <action
+            android:id="@+id/action_personalDataFragment_to_waitCallFragment"
+            app:destination="@id/waitCallFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/waitCallFragment"
+        tools:layout="@layout/fragment_wait_call"
+        android:name="com.example.restaurantapplication.screens.WaitCallFragment"
+        android:label="Wait" >
+        <action
+            android:id="@+id/action_waitCallFragment_to_mainScreenFragment"
+            app:destination="@id/mainScreenFragment" />
+    </fragment>
+
+</navigation>

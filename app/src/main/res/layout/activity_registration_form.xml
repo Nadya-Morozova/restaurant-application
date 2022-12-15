@@ -2,6 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.restaurantapplication.screens.activities.registration.RegistrationViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -12,7 +19,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="60dp"
             android:layout_marginEnd="32dp"
             android:text="@string/create_an_account"
             android:textColor="@color/text_color"
@@ -37,12 +44,12 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_caption" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_email"
+            android:id="@+id/til_search"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="64dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="24dp"
             android:hint="@string/enter_email"
             app:boxCornerRadiusBottomEnd="16dp"
@@ -57,7 +64,8 @@
                 android:id="@+id/et_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:maxLines="1" />
+                android:maxLines="1"
+                android:text="@={viewModel.email}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -75,70 +83,15 @@
             app:boxCornerRadiusTopStart="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/til_email">
+            app:layout_constraintTop_toBottomOf="@+id/til_search">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:maxLines="1" />
+                android:maxLines="1"
+                android:text="@={viewModel.password}" />
         </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_confirm_password"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="24dp"
-            android:hint="@string/confirm_password"
-            app:boxCornerRadiusBottomEnd="16dp"
-            app:boxCornerRadiusBottomStart="16dp"
-            app:boxCornerRadiusTopEnd="16dp"
-            app:boxCornerRadiusTopStart="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/til_password">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_confirm_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:maxLines="1" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/mcv_google"
-            android:layout_width="180dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="5dp"
-            app:layout_constraintBottom_toTopOf="@+id/btn_create_account"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:contentDescription="google"
-                    android:src="@drawable/google" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:text="@string/sign_in_with_google"
-                    android:textColor="@color/text_color" />
-            </LinearLayout>
-
-        </com.google.android.material.card.MaterialCardView>
 
         <Button
             android:id="@+id/btn_create_account"
@@ -146,8 +99,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="32dp"
             android:background="@drawable/round_buttons"
+            android:onClick="@{() -> viewModel.createAccount()}"
             android:text="@string/create_an_account"
             app:layout_constraintBottom_toTopOf="@+id/tv_login_offer"
             app:layout_constraintEnd_toEndOf="parent"
